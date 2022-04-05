@@ -1,0 +1,8 @@
+1. Create volume:
+docker volume create db-vol
+
+2. Start MySQL server:
+docker run --name MySQL -e MYSQL_ROOT_PASSWORD=root -v db-vol:/var/lib/mysql -d mysql:latest
+
+3. Start PHPmyAdmin:
+docker run --name myadmin -d --link MySQL:db -p 8080:80 phpmyadmin
