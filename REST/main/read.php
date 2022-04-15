@@ -11,18 +11,18 @@ $result = $projects->read();
 if($result->num_rows > 0){
     $projectRecords=array();
     $projectRecords["project"]=array();
-    while ($city = $result->fetch_assoc()) {
-        extract($city);
+    while ($project = $result->fetch_assoc()) {
+        extract($project);
         $projectDetails=array(
             "idproject" => $idproject,
             "title" => $title,
             "description" => $description,
             "contract_no" => $contract_no,
-            "beneficiary" => $beneficiary,
-            "fund" => $fund,
-            "location" => $location,
-            "duration" => $duration,
-            "information" => $information
+            "beneficiary_idbeneficiary" => $beneficiary_idbeneficiary,
+            "fund_n_programme_idfund_n_program" => $fund_n_programme_idfund_n_program,
+            "project_location_idproject_location" => $project_location_idproject_location,
+            "duration_idduration" => $duration_idduration,
+            "project_information_idproject_information" => $project_information_idproject_information
         );
         array_push($projectRecords["project"], $projectDetails);
     }
