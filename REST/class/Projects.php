@@ -1,6 +1,7 @@
 <?php
 class Project{
     private $dbTable = "project";
+    public $idproject;
     public $title;
     public $description;
     public $contract_no;
