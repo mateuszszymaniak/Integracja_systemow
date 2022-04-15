@@ -18,7 +18,7 @@ USE `systems_integration` ;
 -- Table `systems_integration`.`beneficiary`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `systems_integration`.`beneficiary` (
-  `idbeneficiary` INT NOT NULL,
+  `idbeneficiary` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(250) NULL,
   PRIMARY KEY (`idbeneficiary`))
 ENGINE = InnoDB;
@@ -28,7 +28,7 @@ ENGINE = InnoDB;
 -- Table `systems_integration`.`fund_n_programme`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `systems_integration`.`fund_n_programme` (
-  `idfund_n_program` INT NOT NULL,
+  `idfund_n_program` INT NOT NULL AUTO_INCREMENT,
   `fund` VARCHAR(4) NULL,
   `programme` VARCHAR(85) NULL,
   `priority` VARCHAR(220) NULL,
@@ -42,7 +42,7 @@ ENGINE = InnoDB;
 -- Table `systems_integration`.`project_location`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `systems_integration`.`project_location` (
-  `idproject_location` INT NOT NULL,
+  `idproject_location` INT NOT NULL AUTO_INCREMENT,
   `location` VARCHAR(5650) NULL,
   `type` VARCHAR(150) NULL,
   PRIMARY KEY (`idproject_location`))
@@ -53,7 +53,7 @@ ENGINE = InnoDB;
 -- Table `systems_integration`.`duration`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `systems_integration`.`duration` (
-  `idduration` INT NOT NULL,
+  `idduration` INT NOT NULL AUTO_INCREMENT,
   `start` DATETIME NULL,
   `end` DATETIME NULL,
   PRIMARY KEY (`idduration`))
@@ -64,7 +64,7 @@ ENGINE = InnoDB;
 -- Table `systems_integration`.`project_information`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `systems_integration`.`project_information` (
-  `idproject_information` INT NOT NULL,
+  `idproject_information` INT NOT NULL AUTO_INCREMENT,
   `competitive_or_not` ENUM('Konkursowy', 'Pozakonkursowy', 'Nadzwyczajny') NULL,
   `area_of_economic_activity` VARCHAR(150) NULL,
   `area_of_project_intervention` VARCHAR(450) NULL,
@@ -80,7 +80,7 @@ ENGINE = InnoDB;
 -- Table `systems_integration`.`project`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `systems_integration`.`project` (
-  `idproject` INT NOT NULL,
+  `idproject` INT NOT NULL AUTO_INCREMENT,
   `title` VARCHAR(1000) NULL,
   `description` VARCHAR(2010) NULL,
   `contract_no` VARCHAR(24) NULL,
@@ -127,11 +127,11 @@ ENGINE = InnoDB;
 -- Table `systems_integration`.`finances`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `systems_integration`.`finances` (
-  `idfinances` INT NOT NULL,
-  `total_value` DECIMAL(10,2) NULL,
-  `eligible_expenditure` DECIMAL(10,2) NULL,
-  `amount_co-financing` DECIMAL(10,2) NULL,
-  `co-financing_rate` DECIMAL(13,13) NULL,
+  `idfinances` INT NOT NULL AUTO_INCREMENT,
+  `total_value` DECIMAL(12,2) NULL,
+  `eligible_expenditure` DECIMAL(12,2) NULL,
+  `amount_co-financing` DECIMAL(12,2) NULL,
+  `co-financing_rate` DECIMAL(26,13) NULL,
   `form` VARCHAR(135) NULL,
   `project_idproject` INT NOT NULL,
   PRIMARY KEY (`idfinances`),
