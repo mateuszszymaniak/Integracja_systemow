@@ -4,7 +4,7 @@ class Duration{
     public $start;
     public $end;
     public function __construct(){
-       //TODO
+        $this->conn = $db;
     }
     //TODO
 }

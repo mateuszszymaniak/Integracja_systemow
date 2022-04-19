@@ -4,7 +4,7 @@ class Location{
     public $location;
     public $type;
     public function __construct(){
-       //TODO
+        $this->conn = $db;
     }
     //TODO
 }

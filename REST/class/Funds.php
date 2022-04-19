@@ -7,7 +7,7 @@ class Fund{
     public $measure;
     public $submeasure;
     public function __construct(){
-       //TODO
+        $this->conn = $db;
     }
     //TODO
 }
