@@ -1,6 +1,7 @@
 <?php
 class Fund{
     private $dbTable = "fund_n_programme";
+    public $id;
     public $fund;
     public $programme;
     public $priority;

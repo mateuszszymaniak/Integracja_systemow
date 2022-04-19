@@ -1,6 +1,7 @@
 <?php
 class Finance{
     private $dbTable = "finances";
+    public $id;
     public $total_value;
     public $eligible_expenditure;
     public $amount_cofinancing:

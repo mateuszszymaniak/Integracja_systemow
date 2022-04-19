@@ -1,6 +1,7 @@
 <?php
 class Location{
     private $dbTable = "project_location";
+    public $id;
     public $location;
     public $type;
     public function __construct(){

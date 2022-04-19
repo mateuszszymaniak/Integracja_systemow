@@ -1,6 +1,7 @@
 <?php
 class Information{
     private $dbTable = "project_information";
+    public $id;
     public $competitive;
     public $activity_area;
     public $intervention_area;

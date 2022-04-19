@@ -1,6 +1,7 @@
 <?php
 class Duration{
     private $dbTable = "duration";
+    public $id;
     public $start;
     public $end;
     public function __construct(){
