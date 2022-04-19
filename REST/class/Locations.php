@@ -14,6 +14,5 @@ class Location{
         $result = $stmt->get_result();
         return $result;
     }
-    //TODO
 }
 ?>

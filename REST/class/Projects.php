@@ -24,14 +24,5 @@ class Project{
         $result = $stmt->get_result();
         return $result;
     }
-    function write(){
-        //TODO
-        $sql = "";//"INSERT INTO ".$this->citiesTable." (`Name`, `CountryCode`, `District`, `Population`) VALUES (?,?,?,?)";
-        $stmt = $this->conn->prepare($sql);
-        $stmt->bind_param('sssi',$this->name,$this->countrycode,$this->district,$this->population);
-        $stmt->execute();
-        $errno = $this->conn->errno;
-        return $errno;
-    }
 }
 ?>
