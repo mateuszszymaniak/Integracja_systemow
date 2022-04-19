@@ -36,18 +36,7 @@ if($result->num_rows > 0){
             "idproject" => $idproject,
             "title" => $title,
             "description" => $description,
-            "contract_no" => $contract_no,
-            /*"beneficiary_idbeneficiary" => $beneficiary_idbeneficiary,
-            "fund_n_programme_idfund_n_program" => $fund_n_programme_idfund_n_program,
-            "project_location_idproject_location" => $project_location_idproject_location,
-            "duration_idduration" => $duration_idduration,
-            "project_information_idproject_information" => $project_information_idproject_information*/
-            "beneficiary" => array(),
-            "fund_n_programme" => array(),
-            "finance" => array(),
-            "project_location" => array(),
-            "duration" => array(),
-            "project_information" => array()
+            "contract_no" => $contract_no
         );
         array_push($projectRecords["project"], $projectDetails);
 
