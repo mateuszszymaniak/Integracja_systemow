@@ -7,7 +7,7 @@ class Beneficiary{
         $this->conn = $db;
     }
     function read($projId){
-        $stmt = $this->conn->prepare("SELECT * FROM ".$this->dbTable." WHERE odbeneficiary = ?");
+        $stmt = $this->conn->prepare("SELECT * FROM ".$this->dbTable." WHERE idbeneficiary = ?");
         $stmt->bind_param("i", $this->id);
         $stmt->execute();
         $result = $stmt->get_result();
