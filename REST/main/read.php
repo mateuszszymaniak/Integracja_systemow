@@ -104,7 +104,9 @@ if($result->num_rows > 0){
                 extract($elem);
                 $projectRecords["project_location"]=array();
                 $project_locationDetails=array(
-                    //TODO
+                    "idproject_location" => $idproject_location,
+                    "location" => $location,
+                    "type" => $type
                 );    
             }
             array_push($projectRecords["project_location"], $project_locationDetails);    
@@ -116,7 +118,9 @@ if($result->num_rows > 0){
                 extract($elem);
                 $projectRecords["duration"]=array();
                 $durationDetails=array(
-                    //TODO
+                    "idduration" => $idduration,
+                    "start" => $start,
+                    "end" => $end
                 );    
             }
             array_push($projectRecords["duration"], $durationDetails);    
@@ -128,7 +132,14 @@ if($result->num_rows > 0){
                 extract($elem);
                 $projectRecords["project_information"]=array();
                 $project_informationDetails=array(
-                    //TODO
+                    "idproject_information" => $idproject_information,
+                    "competitive_or_not" => $competitive_or_not,
+                    "area_of_economic_activity" => $area_of_economic_activity,
+                    "area_of_project_intervention" => $area_of_project_intervention,
+                    "objective" => $objective,
+                    "esf_secondary_theme" => $esf_secondary_theme,
+                    "implemented_under_territorial_delivery_mechanisms" => $implemented_under_territorial_delivery_mechanisms,
+                    "funding_complete" => $funding_complete
                 );    
             }
             array_push($projectRecords["project_information"], $project_informationDetails);    
