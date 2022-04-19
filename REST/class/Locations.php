@@ -4,7 +4,7 @@ class Location{
     public $id;
     public $location;
     public $type;
-    public function __construct(){
+    public function __construct($db){
         $this->conn = $db;
     }
     function read($projId){

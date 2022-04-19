@@ -3,7 +3,7 @@ class Beneficiary{
     private $dbTable = "beneficiary";
     public $id;
     public $name;
-    public function __construct(){
+    public function __construct($db){
         $this->conn = $db;
     }
     function read($projId){

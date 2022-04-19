@@ -4,7 +4,7 @@ class Duration{
     public $id;
     public $start;
     public $end;
-    public function __construct(){
+    public function __construct($db){
         $this->conn = $db;
     }
     function read($projId){

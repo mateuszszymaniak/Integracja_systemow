@@ -7,7 +7,7 @@ class Fund{
     public $priority;
     public $measure;
     public $submeasure;
-    public function __construct(){
+    public function __construct($db){
         $this->conn = $db;
     }
     function read($projId){

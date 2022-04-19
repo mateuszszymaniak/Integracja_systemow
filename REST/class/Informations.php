@@ -9,7 +9,7 @@ class Information{
     public $esf;
     public $teritorial_delivery_mechanism;
     public $funding_complete;
-    public function __construct(){
+    public function __construct($db){
         $this->conn = $db;
     }
     function read($projId){

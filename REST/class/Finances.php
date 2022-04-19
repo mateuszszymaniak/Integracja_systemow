@@ -4,14 +4,14 @@ class Finance{
     public $id;
     public $total_value;
     public $eligible_expenditure;
-    public $amount_cofinancing:
+    public $amount_cofinancing;
     public $cofinancing_rate;
     public $form;
-    public function __construct(){
+    public function __construct($db){
         $this->conn = $db;
     }
     function read($projId){
-        $stmt = $this->conn->prepare("SELECT * FROM ".$this->dbTable." WHERE idproject_locationfinances
+        $stmt = $this->conn->prepare("SELECT * FROM ".$this->dbTable." WHERE idproject_locationfinances = ?");
         $stmt->execute();
         $result = $stmt->get_result();
         return $result;
