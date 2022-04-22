@@ -23,6 +23,12 @@ $result = $projects->read();
 if($result->num_rows > 0){
     $projectRecords=array();
     $projectRecords["project"]=array();
+    $projectRecords["beneficiary"]=array();
+    $projectRecords["fund_n_programme"]=array();
+    $projectRecords["finance"]=array();
+    $projectRecords["project_location"]=array();
+    $projectRecords["duration"]=array();
+    $projectRecords["project_information"]=array();
     while ($project = $result->fetch_assoc()) {
         extract($project);
         $duration->id = (isset($duration_idduration) && $duration_idduration) ? $duration_idduration : '0';
@@ -44,20 +50,18 @@ if($result->num_rows > 0){
         if($related_result->num_rows > 0){
             while($elem = $related_result->fetch_assoc()){
                 extract($elem);
-                $projectRecords["beneficiary"]=array();
                 $beneficiaryDetails=array(
                     "idbeneficiary" => $idbeneficiary,
                     "name" => $name
-                );    
-            }
-            array_push($projectRecords["beneficiary"], $beneficiaryDetails);    
+                );
+                array_push($projectRecords["beneficiary"], $beneficiaryDetails);    
+            }    
         }
 
         $related_result = $funds->read($funds->id);
         if($related_result->num_rows > 0){
             while($elem = $related_result->fetch_assoc()){
                 extract($elem);
-                $projectRecords["fund_n_programme"]=array();
                 $fund_n_programmeDetails=array(
                     "idfund_n_program" => $idfund_n_program,
                     "fund" => $fund,
@@ -66,15 +70,14 @@ if($result->num_rows > 0){
                     "measure" => $measure,
                     "submeasure" => $submeasure
                 );    
+                array_push($projectRecords["fund_n_programme"], $fund_n_programmeDetails);    
             }
-            array_push($projectRecords["fund_n_programme"], $fund_n_programmeDetails);    
         }
         
         $related_result = $finances->read($finances->id);
         if($related_result->num_rows > 0){
             while($elem = $related_result->fetch_assoc()){
                 extract($elem);
-                $projectRecords["finance"]=array();
                 $financeDetails=array(
                     "idfinances" => $idfinances,
                     "total_value" => $total_value,
@@ -83,43 +86,40 @@ if($result->num_rows > 0){
                     "cofinancing_rate" => $cofinancing_rate,
                     "form" => $form
                 );    
+                array_push($projectRecords["finance"], $financeDetails);
             }
-            array_push($projectRecords["finance"], $financeDetails);
         }
         
         $related_result = $locations->read($locations->id);
         if($related_result->num_rows > 0){
             while($elem = $related_result->fetch_assoc()){
                 extract($elem);
-                $projectRecords["project_location"]=array();
                 $project_locationDetails=array(
                     "idproject_location" => $idproject_location,
                     "location" => $location,
                     "type" => $type
                 );    
+                array_push($projectRecords["project_location"], $project_locationDetails);    
             }
-            array_push($projectRecords["project_location"], $project_locationDetails);    
         }
         
         $related_result = $duration->read($duration->id);
         if($related_result->num_rows > 0){
             while($elem = $related_result->fetch_assoc()){
                 extract($elem);
-                $projectRecords["duration"]=array();
                 $durationDetails=array(
                     "idduration" => $idduration,
                     "start" => $start,
                     "end" => $end
                 );    
+                array_push($projectRecords["duration"], $durationDetails);    
             }
-            array_push($projectRecords["duration"], $durationDetails);    
         }
         
         $related_result = $informations->read($informations->id);
         if($related_result->num_rows > 0){
             while($elem = $related_result->fetch_assoc()){
                 extract($elem);
-                $projectRecords["project_information"]=array();
                 $project_informationDetails=array(
                     "idproject_information" => $idproject_information,
                     "competitive_or_not" => $competitive_or_not,
@@ -130,8 +130,8 @@ if($result->num_rows > 0){
                     "implemented_under_territorial_delivery_mechanisms" => $implemented_under_territorial_delivery_mechanisms,
                     "funding_complete" => $funding_complete
                 );    
+                array_push($projectRecords["project_information"], $project_informationDetails);    
             }
-            array_push($projectRecords["project_information"], $project_informationDetails);    
         }
 
     }
