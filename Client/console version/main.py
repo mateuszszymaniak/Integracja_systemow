@@ -28,16 +28,16 @@ def woj(location, finance, duration, woj="LUBELSKIE"):
     yAxis = []
 
     for indx, project in enumerate(location['project_location']):
-        if woj in project['location']:
+        if woj in project['location_place']:
             id.append(location['project'][indx]['idproject'])
     for indx, project in enumerate(finance['project']):
         if project['idproject'] in id:
             yAxis.append(finance['finance'][indx]['total_value'])
-            yAxis = np.array(yAxis)
+            #yAxis = np.array(yAxis)
     for indx, project in enumerate(duration['project']):
         if project['idproject'] in id:
-            xAxis.append(duration['duration'][indx]['start'][:4])
-            xAxis = np.array(xAxis)
+            xAxis.append(duration['duration'][indx]['start'][:7])
+            #xAxis = np.array(xAxis)
     return (xAxis, yAxis)
 
 
