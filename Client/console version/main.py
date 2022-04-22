@@ -52,5 +52,5 @@ duration = conn(url)
 x, y = woj(location, finance, duration, "LUBELSKIE")
 # print(arr)
 
-plt.plot(x, y, 'bo')
+plt.plot(x, y, 'bo-')
 plt.show()
