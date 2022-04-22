@@ -106,8 +106,8 @@ if($result->num_rows > 0){
                         extract($elem);
                         $project_locationDetails=array(
                             "idproject_location" => $idproject_location,
-                            "location" => $location,
-                            "type" => $type
+                            "location_place" => $location_place,
+                            "location_type" => $location_type
                         );    
                         array_push($projectRecords["project_location"], $project_locationDetails);  
                     }

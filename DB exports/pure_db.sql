@@ -43,8 +43,8 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `systems_integration`.`project_location` (
   `idproject_location` INT NOT NULL AUTO_INCREMENT,
-  `location` VARCHAR(5650) NULL,
-  `type` VARCHAR(150) NULL,
+  `location_place` VARCHAR(5650) NULL,
+  `location_type` VARCHAR(150) NULL,
   PRIMARY KEY (`idproject_location`))
 ENGINE = InnoDB;
 
