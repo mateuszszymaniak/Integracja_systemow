@@ -1,8 +1,16 @@
-from types import SimpleNamespace
-
-import matplotlib
+import matplotlib.pyplot as plt
+import numpy as np
 import requests
 import json
+
+def woj(array, woj="LUBELSKIE"):
+    tab = np.array()
+    tab[0] = np.array()
+    tab[1] = np.array()
+    for project in array['project_location']:
+        if woj in project['location']:
+            id = project['idproject_location']
+
 
 url = "http://localhost/Integracja_systemow/REST/main/read"
 response = requests.get(url)
@@ -19,6 +27,8 @@ try:
         print()
         print(array['project'][0]['title'])
         print(type(array['project'][0]['idproject']))
+
+        woj(array)
 
     elif (response.status_code == 404):
         print("Result not found!")
