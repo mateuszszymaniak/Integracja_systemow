@@ -1,6 +1,0 @@
-RewriteEngine On # Turn on the rewriting engine
-RewriteRule ^$ ../
-RewriteRule ^read$ read.php [NC,L]
-RewriteRule ^read/([0-9_-]*)$ read.php?id=$1 [NC,L]
-RewriteRule ^read/([a-z]*)$ readOneEntity.php?entity=$1 [NC,L]
-RewriteRule ^read/([a-z]*)/([0-9_-]*)$ readOneEntity.php?entity=$1&id=$2 [NC,L]
