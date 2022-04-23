@@ -6,5 +6,5 @@ build_property.ProjectTypeGuids =
 build_property.InvariantGlobalization = 
 build_property.PlatformNeutralAssembly = 
 build_property._SupportedPlatformList = Linux,macOS,Windows
-build_property.RootNamespace = XML_Converter
-build_property.ProjectDir = C:\Users\Mateusz\Documents\GitHub\Integracja_systemow\XML_Converter\XML_Converter\
+build_property.RootNamespace = XML_To_DB
+build_property.ProjectDir = C:\Users\Mateusz\Documents\GitHub\Integracja_systemow\XML_Converter\XML_To_DB\

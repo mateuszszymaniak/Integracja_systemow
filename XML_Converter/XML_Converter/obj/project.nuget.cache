@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "FXIopKLM9TGyd0DfTKnvkTDCVF4SrqDyLX1b0XyzD3MNbxLWPU636i1Jw5GUOy7Sj+tsC5j7mbw4c3Xe97t+hg==",
+  "dgSpecHash": "f+8/N3FNaZiA3pvBcGfhW6eMZTyJuavJ2k7UatW+L+sE/NDjoR9kxQ9/tKCQTXOgyKrt68NriTabLN+W6ha9yg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Mateusz\\source\\repos\\Integracja_systemow\\XML_Converter\\XML_Converter\\XML_Converter.csproj",
+  "projectFilePath": "C:\\Users\\Mateusz\\Documents\\GitHub\\Integracja_systemow\\XML_Converter\\XML_Converter\\XML_Converter.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Mateusz\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\5.0.13\\microsoft.netcore.app.host.win-x64.5.0.13.nupkg.sha512"
   ],

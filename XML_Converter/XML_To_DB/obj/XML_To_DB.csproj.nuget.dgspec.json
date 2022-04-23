@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Mateusz\\Documents\\GitHub\\Integracja_systemow\\XML_Converter\\XML_Converter\\XML_Converter.csproj": {}
+    "C:\\Users\\Mateusz\\Documents\\GitHub\\Integracja_systemow\\XML_Converter\\XML_To_DB\\XML_To_DB.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Mateusz\\Documents\\GitHub\\Integracja_systemow\\XML_Converter\\XML_Converter\\XML_Converter.csproj": {
+    "C:\\Users\\Mateusz\\Documents\\GitHub\\Integracja_systemow\\XML_Converter\\XML_To_DB\\XML_To_DB.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Mateusz\\Documents\\GitHub\\Integracja_systemow\\XML_Converter\\XML_Converter\\XML_Converter.csproj",
-        "projectName": "XML_Converter",
-        "projectPath": "C:\\Users\\Mateusz\\Documents\\GitHub\\Integracja_systemow\\XML_Converter\\XML_Converter\\XML_Converter.csproj",
+        "projectUniqueName": "C:\\Users\\Mateusz\\Documents\\GitHub\\Integracja_systemow\\XML_Converter\\XML_To_DB\\XML_To_DB.csproj",
+        "projectName": "XML_To_DB",
+        "projectPath": "C:\\Users\\Mateusz\\Documents\\GitHub\\Integracja_systemow\\XML_Converter\\XML_To_DB\\XML_To_DB.csproj",
         "packagesPath": "C:\\Users\\Mateusz\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Mateusz\\Documents\\GitHub\\Integracja_systemow\\XML_Converter\\XML_Converter\\obj\\",
+        "outputPath": "C:\\Users\\Mateusz\\Documents\\GitHub\\Integracja_systemow\\XML_Converter\\XML_To_DB\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -43,6 +43,12 @@
       "frameworks": {
         "net5.0": {
           "targetAlias": "net5.0",
+          "dependencies": {
+            "MySql.Data": {
+              "target": "Package",
+              "version": "[8.0.28, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",

@@ -14,11 +14,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Mateusz\\source\\repos\\Integracja_systemow\\XML_Converter\\XML_Converter\\XML_Converter.csproj",
+      "projectUniqueName": "C:\\Users\\Mateusz\\Documents\\GitHub\\Integracja_systemow\\XML_Converter\\XML_Converter\\XML_Converter.csproj",
       "projectName": "XML_Converter",
-      "projectPath": "C:\\Users\\Mateusz\\source\\repos\\Integracja_systemow\\XML_Converter\\XML_Converter\\XML_Converter.csproj",
+      "projectPath": "C:\\Users\\Mateusz\\Documents\\GitHub\\Integracja_systemow\\XML_Converter\\XML_Converter\\XML_Converter.csproj",
       "packagesPath": "C:\\Users\\Mateusz\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Mateusz\\source\\repos\\Integracja_systemow\\XML_Converter\\XML_Converter\\obj\\",
+      "outputPath": "C:\\Users\\Mateusz\\Documents\\GitHub\\Integracja_systemow\\XML_Converter\\XML_Converter\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
