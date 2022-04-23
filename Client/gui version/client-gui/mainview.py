@@ -7,7 +7,7 @@
 # WARNING! All changes made in this file will be lost!
 
 from PyQt5 import QtCore, QtGui, QtWidgets
-from PyQt5.QtWidgets import QInputDialog, QLineEdit, QDialog
+from PyQt5.QtWidgets import QInputDialog, QLineEdit, QDialog, QApplication
 import matplotlib.pyplot as plt
 import numpy as np
 import requests
@@ -86,7 +86,7 @@ def conn(url):
         print(error)
 
 
-def woj(location, finance, duration, woj="LUBELSKIE"):
+def woj(location, finance, duration, woj):
     id = []
     xAxis = []
     yAxis = []
@@ -123,12 +123,14 @@ if __name__ == "__main__":
 
             url = "http://localhost/Integracja_systemow/REST/main/read/duration"
             duration = conn(url)
-            x, y = woj(location, finance, duration, "LUBELSKIE")
+            woj_name = str(ui.comboBox.currentText())
+            x, y = woj(location, finance, duration, woj_name)
             # print(arr)
 
             plt.plot(x, y, 'bo-')
             plt.show()
         else:
-            break
-    sys.exit(app.exec_())
-
+            QApplication.quit
+            sys.exit()
+    QApplication.quit
+    sys.exit()
