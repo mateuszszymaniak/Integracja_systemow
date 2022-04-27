@@ -6,4 +6,4 @@ RewriteRule ^read/([a-z]*)$ readOneEntity.php?entity=$1 [NC,L]
 RewriteRule ^read/([a-z]*)/([0-9_-]*)$ readOneEntity.php?entity=$1&id=$2 [NC,L]
 RewriteRule ^read/([a-z]*)/([a-z]*)$ readOneEntity_withFilters.php?entity=$1&filter=$2 [NC,L]
 RewriteRule ^read/([a-z]*)/([a-z]*)/([0-9_-]*)$ readOneEntity_withFilters.php?entity=$1&filter=$2&id=$3 [NC,L]
-RewriteRule ^docs$ docs/index.html [NC, L] # TODO
+RewriteRule ^docs$ ../docs/index.html
