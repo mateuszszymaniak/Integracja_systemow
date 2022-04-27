@@ -1,0 +1,8 @@
+1. Convert .ui design file to .py:
+pyuic5 –x xyz.ui -o xyz.py
+
+2. Build .py app to .exe:
+pyinstaller mainview.py
+
+3. Compress and pack into one file:
+Right click on mainview directory > 7zip > add to archive... > check 'create SFX archive' > OK
