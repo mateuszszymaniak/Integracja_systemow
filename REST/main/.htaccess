@@ -1,6 +1,15 @@
 RewriteEngine On # Turn on the rewriting engine
 RewriteRule ^$ ../
 RewriteRule ^read$ read.php [NC,L]
-RewriteRule ^read/([0-9_-]*)$ read.php?id=$1 [NC,L]
+RewriteRule ^read/([0-9]*)$ read.php?id=$1 [NC,L]
 RewriteRule ^read/([a-z]*)$ readOneEntity.php?entity=$1 [NC,L]
-RewriteRule ^read/([a-z]*)/([0-9_-]*)$ readOneEntity.php?entity=$1&id=$2 [NC,L]
+RewriteRule ^read/([a-z]*)/([0-9]*)$ readOneEntity.php?entity=$1&id=$2 [NC,L]
+RewriteRule ^read/([a-z]*)/([a-z]*)$ readOneEntity_withFilters.php?entity=$1&filter=$2 [NC,L]
+RewriteRule ^read/([a-z]*)/([a-z]*)/([0-9]*)$ readOneEntity_withFilters.php?entity=$1&filter=$2&id=$3 [NC,L]
+RewriteRule ^docs$ https://documenter.getpostman.com/view/20222408/UyrEiFgF [NC,L]
+RewriteRule ^read/([a-z]*)/([a-z]*)/([0-9]*)/([0-9]*)$ readOneEntity_withFilters.php?entity=$1&filter=$2&minVal=$3&maxVal=$4 [NC,L]
+RewriteRule ^read/([a-z]*)/([a-z]*)/([0-9]*)/([0-9]*)/([0-9]*)$ readOneEntity_withFilters.php?entity=$1&filter=$2&id=$3&minVal=$4&maxVal=$5 [NC,L]
+RewriteRule ^read/([a-z]*)/([a-z]*)/([0-9]*)/([0-9]*)/(_[0-9_-]*)/([0-9_-]*)$ readOneEntity_withFilters.php?entity=$1&filter=$2&minVal=$3&maxVal=$4&minDate=$5&maxDate=$6 [NC,L]
+RewriteRule ^read/([a-z]*)/([a-z]*)/([0-9]*)/([0-9]*)/([0-9]*)/(_[0-9_-]*)/([0-9_-]*)$ readOneEntity_withFilters.php?entity=$1&filter=$2&id=$3&minVal=$4&maxVal=$5&minDate=$6&maxDate=$7 [NC,L]
+RewriteRule ^read/([a-z]*)/([a-z]*)/(_[0-9_-]*)/([0-9_-]*)$ readOneEntity_withFilters.php?entity=$1&filter=$2&minDate=$3&maxDate=$4 [NC,L]
+RewriteRule ^read/([a-z]*)/([a-z]*)/([0-9]*)/(_[0-9_-]*)/([0-9_-]*)$ readOneEntity_withFilters.php?entity=$1&filter=$2&id=$3&minDate=$4&maxDate=$5 [NC,L]
