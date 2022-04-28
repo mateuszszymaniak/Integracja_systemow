@@ -75,7 +75,7 @@ class Project{
                     ".project_location_idproject_location = project_location.idproject_location)  INNER JOIN finances ON (".$this->dbTable.
                     ".idproject = finances.project_idproject)
                     WHERE project.idproject = ? AND (project_location.location_place LIKE ? OR project_location.location_place LIKE '%Cały Kraj%') 
-                    AND (finances.total_value BETWEEN ? AND ?) AND (duration.start BETWEEN ? AND ?)");
+                    AND (finances.total_value BETWEEN ? AND ?)");
                     $stmt->bind_param("isii", $this->id, $filter, $minVal, $maxVal);
                 } else {
                     $stmt = $this->conn->prepare("SELECT * FROM ".$this->dbTable." INNER JOIN project_location ON (".$this->dbTable.
