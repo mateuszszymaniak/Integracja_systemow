@@ -28,11 +28,13 @@ class Project{
         $filter = "%".$filter."%";
         if($this->id) {
             $stmt = $this->conn->prepare("SELECT * FROM ".$this->dbTable." INNER JOIN project_location ON (".$this->dbTable.
-            ".project_location_idproject_location = project_location.idproject_location) WHERE project.idproject = ? AND project_location.location_place LIKE ?");
+            ".project_location_idproject_location = project_location.idproject_location) 
+            WHERE project.idproject = ? AND (project_location.location_place LIKE ? OR project_location.location_place LIKE '%Cały Kraj%')");
             $stmt->bind_param("is", $this->id, $filter);
         } else {
             $stmt = $this->conn->prepare("SELECT * FROM ".$this->dbTable." INNER JOIN project_location ON (".$this->dbTable.
-            ".project_location_idproject_location = project_location.idproject_location) WHERE project_location.location_place LIKE ?");
+            ".project_location_idproject_location = project_location.idproject_location) 
+            WHERE project_location.location_place LIKE ? OR project_location.location_place LIKE '%Cały Kraj%'");
             $stmt->bind_param("s", $filter);
         }
         $stmt->execute();
