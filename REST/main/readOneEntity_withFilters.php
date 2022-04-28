@@ -20,7 +20,8 @@ $finances = new Finance($db);
 $informations = new Information($db);
 $projects->id = (isset($_GET['id']) && $_GET['id']) ? $_GET['id'] : '0';
 $type = (isset($_GET['entity']) && $_GET['entity']) ? $_GET['entity'] : '';
-$result = $projects->read();
+$filter = (isset($_GET['filter']) && $_GET['filter']) ? $_GET['filter'] : '';
+$result = $projects->read_nFilter($filter);
 if($result->num_rows > 0){
     $projectRecords=array();
     $projectRecords["project"]=array();
