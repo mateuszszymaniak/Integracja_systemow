@@ -25,7 +25,7 @@ $minVal = (isset($_GET['minVal']) && $_GET['minVal']) ? $_GET['minVal'] : '';
 $maxVal = (isset($_GET['maxVal']) && $_GET['maxVal']) ? $_GET['maxVal'] : '';
 $minDate = (isset($_GET['minDate']) && $_GET['minDate']) ? $_GET['minDate'] : '';
 $maxDate = (isset($_GET['maxDate']) && $_GET['maxDate']) ? $_GET['maxDate'] : '';
-$result = $projects->read_nFilter($filter, $minVal, $maxVal);
+$result = $projects->read_nFilter($filter, $minVal, $maxVal, $minDate, $maxDate);
 if($result->num_rows > 0){
     $projectRecords=array();
     $projectRecords["project"]=array();
