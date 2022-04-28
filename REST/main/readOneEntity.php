@@ -48,6 +48,9 @@ if($result->num_rows > 0){
         array_push($projectRecords["project"], $projectDetails);
 
         switch($type){
+            case 'project': {
+                break;
+            }
             case 'beneficiary': {
                 $related_result = $beneficiaries->read($beneficiaries->id);
                 if($related_result->num_rows > 0){
