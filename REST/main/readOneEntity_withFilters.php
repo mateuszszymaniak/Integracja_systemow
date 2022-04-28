@@ -21,7 +21,11 @@ $informations = new Information($db);
 $projects->id = (isset($_GET['id']) && $_GET['id']) ? $_GET['id'] : '0';
 $type = (isset($_GET['entity']) && $_GET['entity']) ? $_GET['entity'] : '';
 $filter = (isset($_GET['filter']) && $_GET['filter']) ? $_GET['filter'] : '';
-$result = $projects->read_nFilter($filter);
+$minVal = (isset($_GET['minVal']) && $_GET['minVal']) ? $_GET['minVal'] : '';
+$maxVal = (isset($_GET['maxVal']) && $_GET['maxVal']) ? $_GET['maxVal'] : '';
+$minDate = (isset($_GET['minDate']) && $_GET['minDate']) ? $_GET['minDate'] : '';
+$maxDate = (isset($_GET['maxDate']) && $_GET['maxDate']) ? $_GET['maxDate'] : '';
+$result = $projects->read_nFilter($filter, $minVal, $maxVal);
 if($result->num_rows > 0){
     $projectRecords=array();
     $projectRecords["project"]=array();

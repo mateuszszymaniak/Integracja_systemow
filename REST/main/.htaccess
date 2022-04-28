@@ -7,3 +7,5 @@ RewriteRule ^read/([a-z]*)/([0-9_-]*)$ readOneEntity.php?entity=$1&id=$2 [NC,L]
 RewriteRule ^read/([a-z]*)/([a-z]*)$ readOneEntity_withFilters.php?entity=$1&filter=$2 [NC,L]
 RewriteRule ^read/([a-z]*)/([a-z]*)/([0-9_-]*)$ readOneEntity_withFilters.php?entity=$1&filter=$2&id=$3 [NC,L]
 RewriteRule ^docs$ ../docs/index.html
+RewriteRule ^read/([a-z]*)/([a-z]*)/([0-9_-]*)/([0-9_-]*)$ readOneEntity_withFilters.php?entity=$1&filter=$2&minVal=$3&maxVal=$4 [NC,L]
+RewriteRule ^read/([a-z]*)/([a-z]*)/([0-9_-]*)/([0-9_-]*)/([0-9_-]*)$ readOneEntity_withFilters.php?entity=$1&filter=$2&id=$3&minVal=$4&maxVal=$5 [NC,L]
