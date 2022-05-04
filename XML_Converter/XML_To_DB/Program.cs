@@ -104,7 +104,7 @@ namespace XML_To_DB {
                             insert_pro_loc(pro_loc, conn);
                             insert_dur(dur, conn);
                             insert_pro_inf(pro_inf, conn);
-                            insert_pro(pro_inf, conn, project_counter);
+                            insert_pro(pro, conn, project_counter);
                             insert_fin(fin, conn, project_counter);
                             counters_to_zero(out counter_labels, out ben_array_counter, out fund_array_counter, out pro_loc_array_counter, out dur_array_counter, out pro_inf_array_counter, out pro_array_counter, out fin_array_counter, ben, fund, pro_loc, dur, pro_inf, pro, fin);
                         }
