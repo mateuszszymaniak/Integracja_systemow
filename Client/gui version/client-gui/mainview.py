@@ -6,6 +6,8 @@
 #
 # WARNING! All changes made in this file will be lost!
 
+from tracemalloc import start
+from urllib import request, response
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import QInputDialog, QLineEdit, QDialog, QApplication
 import matplotlib.pyplot as plt
@@ -23,7 +25,7 @@ class Ui_Dialog(object):
         self.buttonBox.setStandardButtons(QtWidgets.QDialogButtonBox.Cancel|QtWidgets.QDialogButtonBox.Ok)
         self.buttonBox.setObjectName("buttonBox")
         self.comboBox = QtWidgets.QComboBox(Dialog)
-        self.comboBox.setGeometry(QtCore.QRect(80, 40, 151, 31))
+        self.comboBox.setGeometry(QtCore.QRect(80, 30, 151, 31))
         self.comboBox.setObjectName("comboBox")
         self.comboBox.addItem("")
         self.comboBox.addItem("")
@@ -41,6 +43,14 @@ class Ui_Dialog(object):
         self.comboBox.addItem("")
         self.comboBox.addItem("")
         self.comboBox.addItem("")
+        self.radioButton_year = QtWidgets.QRadioButton(Dialog)
+        self.radioButton_year.setGeometry(QtCore.QRect(80, 70, 70, 31))
+        self.radioButton_year.setText("Roczny")
+        self.radioButton_year.setChecked(True)
+
+        self.radioButton_month = QtWidgets.QRadioButton(Dialog)
+        self.radioButton_month.setGeometry(QtCore.QRect(160, 70, 100, 31))
+        self.radioButton_month.setText("Miesieczny")
 
         self.retranslateUi(Dialog)
         self.buttonBox.accepted.connect(Dialog.accept)
@@ -86,22 +96,28 @@ def conn(url):
         print(error)
 
 
-def woj(location, finance, duration, woj):
-    id = []
+def woj(chart, chosen_chart):
     xAxis = []
     yAxis = []
+    time_value_dict = {}
 
-    for indx, project in enumerate(location['project_location']):
-        if woj in project['location_place']:
-            id.append(location['project'][indx]['idproject'])
-    for indx, project in enumerate(finance['project']):
-        if project['idproject'] in id:
-            yAxis.append(finance['finance'][indx]['total_value'])
-            #yAxis = np.array(yAxis)
-    for indx, project in enumerate(duration['project']):
-        if project['idproject'] in id:
-            xAxis.append(duration['duration'][indx]['start'][:7])
-            #xAxis = np.array(xAxis)
+    for indx, project in enumerate(chart["chart"]):
+        if (type(project) == dict):
+            if(chosen_chart == "Roczny"):
+                if project['start'][:4] in time_value_dict:
+                    time_value_dict[project['start'][:4]] += round(float(project['total_value']))
+                else:
+                    time_value_dict[project['start'][:4]] = round(float(project['total_value']))
+            else: 
+                if project['start'][:7] in time_value_dict:
+                    time_value_dict[project['start'][:7]] += round(float(project['total_value']))
+                else:
+                    time_value_dict[project['start'][:7]] = round(float(project['total_value']))
+
+    for x in time_value_dict:
+        # print(f"{x} -> {time_value_dict[x]}")
+        xAxis.append(x)
+        yAxis.append(time_value_dict[x])
     return (xAxis, yAxis)
 
 
@@ -115,18 +131,33 @@ if __name__ == "__main__":
         Dialog.show()
         result = Dialog.exec()
         if result == QDialog.Accepted:
-            url = "http://localhost/Integracja_systemow/REST/main/read/location"
-            location = conn(url)
-
-            url = "http://localhost/Integracja_systemow/REST/main/read/finance"
-            finance = conn(url)
-
-            url = "http://localhost/Integracja_systemow/REST/main/read/duration"
-            duration = conn(url)
             woj_name = str(ui.comboBox.currentText())
-            x, y = woj(location, finance, duration, woj_name)
-            # print(arr)
+            chart_type_year = ui.radioButton_year
+            chart_type_month = ui.radioButton_month
 
+            if (chart_type_year.isChecked()):
+                chosen_chart = str(ui.radioButton_year.text())
+            if (chart_type_month.isChecked()):
+                chosen_chart = str(ui.radioButton_month.text())
+
+            rep_woj_name = woj_name.replace('Ś', 'S').replace('Ą', 'A').replace('Ł', 'L').replace('Ó', 'O').replace('Ę', 'E').replace('Ń', 'N')
+
+            url = f"http://localhost/Integracja_systemow/REST/main/read/chart/{rep_woj_name}"
+            chart = conn(url)
+
+            x, y = woj(chart, chosen_chart)
+
+            # disable science numeric
+            plt.ticklabel_format(style='plain')
+            # rotate data on axis (up-down)
+            plt.xticks(rotation=90)
+            # rotate data on axis (left-down direction)
+            # plt.xticks(rotation=45, ha='right')
+            
+            #fullscreen
+            figManager = plt.get_current_fig_manager()
+            figManager.window.showMaximized()
+            
             plt.plot(x, y, 'bo-')
             plt.show()
         else:

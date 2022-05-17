@@ -9,6 +9,7 @@ include_once '../class/Funds.php';
 include_once '../class/Locations.php';
 include_once '../class/Finances.php';
 include_once '../class/informations.php';
+include_once '../class/Chart.php';
 $database = new Database();
 $db = $database->getConnection();
 $projects = new Project($db);
@@ -18,6 +19,7 @@ $funds = new Fund($db);
 $locations = new Location($db);
 $finances = new Finance($db);
 $informations = new Information($db);
+$chart = new Chart($db);
 $projects->id = (isset($_GET['id']) && $_GET['id']) ? $_GET['id'] : '0';
 $type = (isset($_GET['entity']) && $_GET['entity']) ? $_GET['entity'] : '';
 $filter = (isset($_GET['filter']) && $_GET['filter']) ? $_GET['filter'] : '';
@@ -25,8 +27,9 @@ $minVal = (isset($_GET['minVal']) && $_GET['minVal']) ? $_GET['minVal'] : '';
 $maxVal = (isset($_GET['maxVal']) && $_GET['maxVal']) ? $_GET['maxVal'] : '';
 $minDate = (isset($_GET['minDate']) && $_GET['minDate']) ? $_GET['minDate'] : '';
 $maxDate = (isset($_GET['maxDate']) && $_GET['maxDate']) ? $_GET['maxDate'] : '';
-$result = $projects->read_nFilter($filter, $minVal, $maxVal, $minDate, $maxDate);
+$result = $projects->read_nFilter($filter, $minVal, $maxVal, $minDate, $maxDate, $chart);
 if($result->num_rows > 0){
+	//var_dump($result->num_rows);
     $projectRecords=array();
     $projectRecords["project"]=array();
     $projectRecords["beneficiary"]=array();
@@ -34,7 +37,8 @@ if($result->num_rows > 0){
     $projectRecords["finance"]=array();
     $projectRecords["project_location"]=array();
     $projectRecords["duration"]=array();
-    $projectRecords["project_information"]=array();    
+    $projectRecords["project_information"]=array();   
+	$projectRecords["chart"]=array();	
     while ($project = $result->fetch_assoc()) {
         extract($project);
         $duration->id = (isset($duration_idduration) && $duration_idduration) ? $duration_idduration : '0';
@@ -43,15 +47,15 @@ if($result->num_rows > 0){
         $locations->id = (isset($project_location_idproject_location) && $project_location_idproject_location) ? $project_location_idproject_location : '0';
         $finances->id = (isset($idproject) && $idproject) ? $idproject : '0';
         $informations->id = (isset($project_information_idproject_information) && $project_information_idproject_information) ? $project_information_idproject_information : '0';
+		$chart->filter = (isset($filter) && $filter) ? $filter : '0';
 
-        $projectDetails=array(
+        /*$projectDetails=array(
             "idproject" => $idproject,
             "title" => $title,
             "description" => $description,
             "contract_no" => $contract_no
         );
-        array_push($projectRecords["project"], $projectDetails);
-
+        array_push($projectRecords["project"], $projectDetails);*/
         switch($type){
             case 'beneficiary': {
                 $related_result = $beneficiaries->read($beneficiaries->id);
@@ -121,6 +125,7 @@ if($result->num_rows > 0){
             }
             case 'duration': {
                 $related_result = $duration->read($duration->id);
+				var_dump($related_result);
                 if($related_result->num_rows > 0){
                     while($elem = $related_result->fetch_assoc()){
                         extract($elem);
@@ -128,8 +133,8 @@ if($result->num_rows > 0){
                             "idduration" => $idduration,
                             "start" => $start,
                             "end" => $end
-                        );    
-                        array_push($projectRecords["duration"], $durationDetails);    
+                        );
+                        array_push($projectRecords["duration"], $durationDetails);
                     }
                     break;
                 }
@@ -153,6 +158,23 @@ if($result->num_rows > 0){
                     }
                     break;  
                 } 
+            }
+			case 'chart': {
+                $related_result = $chart->read($chart->filter);
+                if($related_result->num_rows > 0 ){
+					$projectRecords["chart"] = array_fill(0, $related_result->num_rows,'');
+                    while($elem = $related_result->fetch_assoc()){
+                        extract($elem);
+                        $chart_informationDetails=array(
+                            "idproject" => $idproject,
+                            "start" => $start,
+                            "location_place" => $location_place,
+                            "total_value" => $total_value
+                        );    
+                        array_push($projectRecords["chart"], $chart_informationDetails);
+                    }
+                    break;  
+                }
             }
             default: {
                 http_response_code(404);
