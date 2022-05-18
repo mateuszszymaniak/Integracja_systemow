@@ -24,6 +24,11 @@ class Ui_Dialog(object):
         self.buttonBox.setOrientation(QtCore.Qt.Vertical)
         self.buttonBox.setStandardButtons(QtWidgets.QDialogButtonBox.Cancel|QtWidgets.QDialogButtonBox.Ok)
         self.buttonBox.setObjectName("buttonBox")
+
+        self.label = QtWidgets.QLabel(Dialog)
+        self.label.setGeometry(QtCore.QRect(100, 10, 120, 20))
+        self.label.setObjectName("label")
+
         self.comboBox = QtWidgets.QComboBox(Dialog)
         self.comboBox.setGeometry(QtCore.QRect(80, 30, 151, 31))
         self.comboBox.setObjectName("comboBox")
@@ -43,14 +48,19 @@ class Ui_Dialog(object):
         self.comboBox.addItem("")
         self.comboBox.addItem("")
         self.comboBox.addItem("")
+
+        self.label_2 = QtWidgets.QLabel(Dialog)
+        self.label_2.setGeometry(QtCore.QRect(100, 80, 120, 20))
+        self.label_2.setObjectName("label_2")
+
         self.radioButton_year = QtWidgets.QRadioButton(Dialog)
-        self.radioButton_year.setGeometry(QtCore.QRect(80, 70, 70, 31))
+        self.radioButton_year.setGeometry(QtCore.QRect(80, 90, 70, 31))
         self.radioButton_year.setText("Roczny")
         self.radioButton_year.setChecked(True)
 
         self.radioButton_month = QtWidgets.QRadioButton(Dialog)
-        self.radioButton_month.setGeometry(QtCore.QRect(160, 70, 100, 31))
-        self.radioButton_month.setText("Miesieczny")
+        self.radioButton_month.setGeometry(QtCore.QRect(160, 90, 100, 31))
+        self.radioButton_month.setText("Miesięczny")
 
         self.retranslateUi(Dialog)
         self.buttonBox.accepted.connect(Dialog.accept)
@@ -59,7 +69,7 @@ class Ui_Dialog(object):
 
     def retranslateUi(self, Dialog):
         _translate = QtCore.QCoreApplication.translate
-        Dialog.setWindowTitle(_translate("Dialog", "Dialog"))
+        Dialog.setWindowTitle(_translate("Dialog", "Generowanie wykresu dofinansowań unijnych"))
         self.comboBox.setItemText(0, _translate("Dialog", "DOLNOŚLĄSKIE"))
         self.comboBox.setItemText(1, _translate("Dialog", "KUJAWSKO-POMORSKIE"))
         self.comboBox.setItemText(2, _translate("Dialog", "LUBELSKIE"))
@@ -76,6 +86,8 @@ class Ui_Dialog(object):
         self.comboBox.setItemText(13, _translate("Dialog", "WARMIŃSKO-MAZURSKIE"))
         self.comboBox.setItemText(14, _translate("Dialog", "WIELKOPOLSKIE"))
         self.comboBox.setItemText(15, _translate("Dialog", "ZACHODNIOPOMORSKIE"))
+        self.label.setText(_translate("Dialog", "Wybierz województwo"))
+        self.label_2.setText(_translate("Dialog", "Wybierz rodzaj raportu"))
 
 
 def conn(url):
@@ -141,6 +153,8 @@ if __name__ == "__main__":
                 chosen_chart = str(ui.radioButton_month.text())
 
             rep_woj_name = woj_name.replace('Ś', 'S').replace('Ą', 'A').replace('Ł', 'L').replace('Ó', 'O').replace('Ę', 'E').replace('Ń', 'N')
+            if ('-' in rep_woj_name):
+                rep_woj_name = rep_woj_name[:rep_woj_name.find('-')]
 
             url = f"http://localhost/Integracja_systemow/REST/main/read/chart/{rep_woj_name}"
             chart = conn(url)
@@ -151,15 +165,16 @@ if __name__ == "__main__":
             plt.ticklabel_format(style='plain')
             # rotate data on axis (up-down)
             plt.xticks(rotation=90)
-            # rotate data on axis (left-down direction)
-            # plt.xticks(rotation=45, ha='right')
             
             #fullscreen
             figManager = plt.get_current_fig_manager()
             figManager.window.showMaximized()
 
-            title = f"{chosen_chart} wykres dofinansowań unijnych/nWojewodztwo: {woj_name}"
+            suptitle = f"{chosen_chart} wykres dofinansowań unijnych"
+            title = f"Wojewodztwo: {woj_name}"
+            plt.suptitle(suptitle)
             plt.title(title)
+
             plt.ylabel("Kwota dofinansowania w zł")
             if (chosen_chart == "Roczny"):
                 plt.xlabel("Lata")
