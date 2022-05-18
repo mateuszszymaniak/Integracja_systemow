@@ -157,7 +157,15 @@ if __name__ == "__main__":
             #fullscreen
             figManager = plt.get_current_fig_manager()
             figManager.window.showMaximized()
-            
+
+            title = f"{chosen_chart} wykres dofinansowań unijnych/nWojewodztwo: {woj_name}"
+            plt.title(title)
+            plt.ylabel("Kwota dofinansowania w zł")
+            if (chosen_chart == "Roczny"):
+                plt.xlabel("Lata")
+            else:
+                plt.xlabel("Miesiące")
+
             plt.plot(x, y, 'bo-')
             plt.show()
         else:
