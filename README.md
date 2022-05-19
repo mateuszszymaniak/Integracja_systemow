@@ -9,4 +9,8 @@
 1.6 Press OK.<br/>
 1.7 Run the program.<br/>
 
-2. To run XML_To_DB program you need install MySql.Data package with 8.0.28 version.
+2. To run XML_To_DB program you need install MySql.Data package with 8.0.28 version.<br/>
+3. Python must be installed with version at least 3.10.<br/>
+4. Xampp must be installed with version v3.3.0 (Compiled: Apr 6th 2021).<br/>
+5. PHP must be installed with version 8.1.4.<br/>
+6. .NET must be installed with at least version 5.0 <br/>
